@@ -14,7 +14,7 @@ import week5 from "../../assets/images/tokens/week-5.png";
 import BuyImg from "../../assets/images/tokens/buy.png";
 import SwapImg from "../../assets/images/tokens/swap.png";
 import JazzImg from "../../assets/images/tokens/jazz-holders.png";
-
+import { connect } from "react-redux";
 class Tokens extends Component {
   render() {
     let contents = (
@@ -30,22 +30,22 @@ class Tokens extends Component {
           <div className="weeks">
             <img src={week1} className="weeks-image" />
             <h2 className="elementor-heading-title">
-              Price: $1.00
+              Price: $2.00
             </h2>
           </div>
           <div className="weeks">
             <img src={week2} className="weeks-image" />
             <h2 className="elementor-heading-title">
-              Price: $1.50
+              Price: $2.25
             </h2>
           </div>
           <div className="weeks">
             <img src={week3} className="weeks-image" />
             <h2 className="elementor-heading-title">
-              Price: $2.00
+              Price: $2.50
             </h2>
           </div>
-          <div className="weeks">
+          <div className="weeks current">
             <img src={week4} className="weeks-image" />
             <h2 className="elementor-heading-title">
               Price: $3.00
@@ -58,44 +58,92 @@ class Tokens extends Component {
             </h2>
           </div>
         </Col>
-        <Col lg={12} md={12} sm={12} className="col-xs-12 pd-l20 pd-r20 ">
-          <Row>
-            <Col lg={6} md={6} sm={6} className="col-xs-12 mr-t20">
-              <img src={BuyImg} />
-              <div className="mr-t30 mr-b20 buy-inputs">
-                <input type="number" placeholder="BNB" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-                <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-              </div>
-              <div className="buy-btns">
-                <Button variant="contained" className="buy_btn">Buy</Button>
-              </div>
+        {
+          this.props.network == '137' ? (
+            <Col lg={12} md={12} sm={12} className="col-xs-12 pd-l20 pd-r20 ">
+              <Row>
+                <Col lg={6} md={6} sm={6} className="col-xs-12 jazzholders-tab mr-t20">
+                  <img src={BuyImg} />
+                  <div className="progressbar-container mr-t20">
+                    <div className="progressbar-complete" style={{ width: `30%` }}>
+                      <div className="progressbar-liquid"></div>
+                    </div>
+                    <span className="progress-percent">30% Sold</span>
+                  </div>
+                  <div>Presale Total Amount: 15,000,000 RCK</div>
+                  <div className="mr-t30 mr-b20 buy-inputs">
+                    <input type="number" placeholder="BNB" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                    <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                  </div>
+                  <div className="buy-btns">
+                    <Button variant="contained" className="buy_btn">Buy</Button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          ) : (
+            <Col lg={12} md={12} sm={12} className="col-xs-12 pd-l20 pd-r20 ">
+              <Row>
+                <Col lg={6} md={6} sm={6} className="col-xs-12 mr-t20">
+                  <img src={BuyImg} />
+                  <div className="progressbar-container mr-t20">
+                    <div className="progressbar-complete" style={{ width: `30%` }}>
+                      <div className="progressbar-liquid"></div>
+                    </div>
+                    <span className="progress-percent">30% Sold</span>
+                  </div>
+                  <div>Sale Amount: 15,000,000 RCK</div>
+                  <div className="mr-t30 mr-b20 buy-inputs">
+                    <input type="number" placeholder="BNB" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                    <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                  </div>
+                  <div className="buy-btns">
+                    <Button variant="contained" className="buy_btn">Buy</Button>
+                  </div>
+                </Col>
+                <Col lg={6} md={6} sm={6} className="col-xs-12 buy-tab mr-t20">
+                  <img src={SwapImg} />
+                  <div className="progressbar-container mr-t20">
+                    <div className="progressbar-complete" style={{ width: `30%` }}>
+                      <div className="progressbar-liquid"></div>
+                    </div>
+                    <span className="progress-percent">30% Sold</span>
+                  </div>
+                  <div>Swap Amount: 15,000,000 RCK</div>
+                  <div className="mr-t30 mr-b20 buy-inputs">
+                    <input type="number" placeholder="JAZZ" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                    <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                  </div>
+                  <div className="buy-btns">
+                  
+                    <Button variant="contained" className="buy_btn swap_btn">Swap</Button>
+                    <Button variant="contained" className="buy_btn approve_btn" >Approve</Button>
+                  </div>
 
+                </Col>
+              </Row>
+              <Row>
+                <Col lg='6' md='6' sm='6' className="col-xs-12 jazzholders-tab mr-t20">
+                  <img src={JazzImg} />
+                  <div className="progressbar-container mr-t20">
+                    <div className="progressbar-complete" style={{ width: `30%` }}>
+                      <div className="progressbar-liquid"></div>
+                    </div>
+                    <span className="progress-percent">30% Sold</span>
+                  </div>
+                  <div>Sale Amount: 15,000,000 RCK</div>
+                  <div className="mr-t30 mr-b20 buy-inputs">
+                    <input type="number" placeholder="BNB" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                    <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
+                  </div>
+                  <div className="buy-btns">
+                    <Button variant="contained" className="buy_btn swap_btn jazz_btn">Buy</Button>
+                  </div>
+                </Col>
+              </Row>
             </Col>
-            <Col lg={6} md={6} sm={6} className="col-xs-12 buy-tab mr-t20">
-              <img src={SwapImg} />
-              <div className="mr-t30 mr-b20 buy-inputs">
-                <input type="number" placeholder="JAZZ" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-                <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-              </div>
-              <div className="buy-btns">
-                <Button variant="contained" className="buy_btn swap_btn">Swap</Button>
-              </div>
-
-            </Col>
-          </Row>
-          <Row>
-            <Col lg='6' md='6' sm='6' className="col-xs-12 jazzholders-tab mr-t20">
-              <img src={JazzImg} />
-              <div className="mr-t30 mr-b20 buy-inputs">
-                <input type="number" placeholder="BNB" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-                <input type="number" placeholder="Rock" style={{ width: 250, marginRight: 30, marginTop: 10 }} />
-              </div>
-              <div className="buy-btns">
-                <Button variant="contained" className="buy_btn swap_btn jazz_btn">Buy</Button>
-              </div>
-            </Col>
-          </Row>
-        </Col>
+          )
+        }
 
       </Row>
     );
@@ -141,4 +189,12 @@ class Tokens extends Component {
   }
 }
 
-export default Tokens;
+
+const mapStateToProps = (state) => ({
+  network: state.network.chainId,
+});
+
+
+
+export default connect(mapStateToProps, null)(Tokens);
+

@@ -1996,14 +1996,9 @@ ul ul > li.has-sub > a:before {
 .btc_main_menu ul li:hover a,
 .btc_main_menu ul li.active a {
   color: red;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
+
 }
-.btc_main_menu ul li:hover a:after,
-.btc_main_menu ul li.active a:after {
+.btc_main_menu ul li:hover a:after{
   background-color: #ff0000;
   content: "";
   bottom: 0;
@@ -2011,9 +2006,7 @@ ul ul > li.has-sub > a:before {
   width: 100%;
   left: 0;
   z-index: 2;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
+
   display: block;
   position: absolute;
 }
@@ -2255,6 +2248,8 @@ ul ul > li.has-sub > a:before {
 .logo-area ul li a img {
   height: 25px;
 }
+
+
 .slider-area .slider-content ul li a {
   display: block;
   width: 50px;
@@ -5778,6 +5773,16 @@ font-weight: bold;
     font-size:inherit;
     text-align:center;
 }
+.current{
+  border: 2px solid rgb(104, 104, 252);
+
+}
+.current .elementor-heading-title{
+  color: #ff8500!important;
+  background-image: none!important;
+  background-color: rgb(78, 69, 247)!important;
+  margin: 0;
+}
 .buy-inputs{
   display: flex;
   flex-direction: row;
@@ -5789,6 +5794,9 @@ font-weight: bold;
 }
 .buy_btn{
   float:right;
+}
+.approve_btn{
+  margin-right: 10px!important;
 }
 .MuiButton-contained.buy_btn{
   background-color:#96F975;
@@ -5881,4 +5889,21 @@ input{
   color: white;
   float: right;
   line-height: 14px;
+}
+@media only screen and (max-width: 480px) {
+  .logo-area ul li a {
+    width: 30px;
+  height: 30px;
+  line-height: 35px;
+  font-size: 15px;
+  }
+  .logo-area ul li a img {
+    height: 15px;
+  }
+  #toggle{
+    margin-top: -10px;
+  }
+  .btn-wallet{
+    padding: 3px 10px;
+  }
 }

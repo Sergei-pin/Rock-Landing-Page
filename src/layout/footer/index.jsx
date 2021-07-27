@@ -31,7 +31,7 @@ class Footer extends Component {
                         <FaTelegram />
                       </a>
                     </li>
-                    <li className="slider_social_icon3">
+                    {/* <li className="slider_social_icon3">
                       <a href="https://dex.guru/token/0x77f2a1e63054c45093abcb0b83f16a0ce79b7018-bsc" target="blank">
                         <FaRegChartBar />
                       </a>
@@ -40,12 +40,12 @@ class Footer extends Component {
                       <Link to="#">
                         <GiCutDiamond />
                       </Link>
-                    </li>
+                    </li> */}
                     <li className="slider_social_icon5">
-                      <Link to="#">
-                        <GiStabbedNote />
-                      </Link>
-                    </li>
+                    <a href="https://whitepaper">
+                      <GiStabbedNote />
+                    </a>
+                  </li> 
                   </ul>
                 </div>
 

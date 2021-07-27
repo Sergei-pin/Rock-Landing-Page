@@ -10,8 +10,8 @@ import {
 } from "@pancakeswap-v3/uikit";
 import { useWeb3React } from "@web3-react/core";
 import logo from "assets/images/logo/logo.png";
-import {FaRegChartBar, FaTelegram, FaTwitter} from "react-icons/fa";
-import {GiCutDiamond, GiStabbedNote} from "react-icons/gi";
+import { FaRegChartBar, FaTelegram, FaTwitter } from "react-icons/fa";
+import { GiCutDiamond, GiStabbedNote } from "react-icons/gi";
 import flag from "../../assets/images/icons/12.png";
 import Config from "../../configure";
 import $ from "jquery";
@@ -29,22 +29,22 @@ const Header = ({ network, switchNetwork }) => {
     modals[arg].onPresentConnectModal();
   };
   let networkModal = (
-    <Modal title={"Select a network"} onDismiss={() => {}}>
+    <Modal title={"Select a network"} onDismiss={() => { }}>
       <Button variant="primary" onClick={onConnect(56)} width="100%">
         Binance Smart Chain
       </Button>
       <br />
-      <Button variant="primary" onClick={onConnect(97)} width="100%">
+      {/* <Button variant="primary" onClick={onConnect(97)} width="100%">
         Binance Smart Chain Testnet
       </Button>
-      <br />
+      <br /> */}
       <Button variant="primary" onClick={onConnect(137)} width="100%">
-        Matic Mainnet
+        Matic
       </Button>
       <br />
-      <Button variant="primary" onClick={onConnect(80001)} width="100%">
+      {/* <Button variant="primary" onClick={onConnect(80001)} width="100%">
         Matic Testnet
-      </Button>
+      </Button> */}
     </Modal>
   );
   const [onNetworkModal] = useModal(networkModal);
@@ -110,21 +110,21 @@ const Header = ({ network, switchNetwork }) => {
           );
       }
     );
-    $(window).scroll(function () {
-      var windscroll = $(window).scrollTop();
-      var target = $(".wd_single_index_menu ul li");
-      if (windscroll >= 0) {
-        $(".wd_scroll").each(function (i) {
-          if ($(this).position().top <= windscroll + 90) {
-            target.removeClass("active");
-            target.eq(i).addClass("active");
-          }
-        });
-      } else {
-        target.removeClass("active");
-        $(".wd_single_index_menu ul li:first").addClass("active");
-      }
-    });
+    // $(window).scroll(function () {
+    //   var windscroll = $(window).scrollTop();
+    //   var target = $(".wd_single_index_menu ul li");
+    //   if (windscroll >= 0) {
+    //     $(".wd_scroll").each(function (i) {
+    //       if ($(this).position().top <= windscroll + 90) {
+    //         target.removeClass("active");
+    //         // target.eq(i).addClass("active");
+    //       }
+    //     });
+    //   } else {
+    //     target.removeClass("active");
+    //     $(".wd_single_index_menu ul li:first").addClass("active");
+    //   }
+    // });
   });
   let navigation = (
     <ul>
@@ -163,13 +163,12 @@ const Header = ({ network, switchNetwork }) => {
   return (
     <div id="default" className="wd_scroll_wrap wd_scroll">
       <header
-        className={`gc_main_menu_wrapper ${
-          scroll > top ? "menu_fixed animated fadeInDown" : ""
-        }`}
+        className={`gc_main_menu_wrapper ${scroll > top ? "menu_fixed animated fadeInDown" : ""
+          }`}
       >
         <Container fluid>
           <Row>
-            <Col className="col-xs-10" sm={12} md={4} lg={4}>
+            <Col className="col-xs-5" sm={12} md={4} lg={4}>
               <div className="logo-area">
                 <ul>
                   <li className="slider_social_icon1">
@@ -182,7 +181,8 @@ const Header = ({ network, switchNetwork }) => {
                       <FaTelegram />
                     </a>
                   </li>
-                  <li className="slider_social_icon3">
+
+                  {/* <li className="slider_social_icon3">
                     <a href="https://dex.guru/token/0x77f2a1e63054c45093abcb0b83f16a0ce79b7018-bsc" target="blank">
                       <FaRegChartBar />
                     </a>
@@ -191,16 +191,16 @@ const Header = ({ network, switchNetwork }) => {
                     <Link to="#">
                       <GiCutDiamond />
                     </Link>
-                  </li>
+                  </li>*/}
                   <li className="slider_social_icon5">
-                    <Link to="#">
+                    <a href="https://whitepaper">
                       <GiStabbedNote />
-                    </Link>
-                  </li>
+                    </a>
+                  </li> 
                 </ul>
               </div>
             </Col>
-            <Col lg={8} md={8} sm={12} className="col-xs-2">
+            <Col lg={8} md={8} sm={12} className="col-xs-7">
               <div className="menu-area hidden-xs">
                 <nav className="wd_single_index_menu btc_main_menu">
                   {navigation}
@@ -208,7 +208,7 @@ const Header = ({ network, switchNetwork }) => {
                 <div className="login-btn">
                   {account ? (
                     <button
-                      className="btn1"
+                      className="btn-wallet"
                       onClick={modals[network].onPresentAccountModal}
                     >
                       {account.substr(0, 4) +
@@ -225,6 +225,20 @@ const Header = ({ network, switchNetwork }) => {
               <div className="rp_mobail_menu_main_wrapper visible-xs">
                 <div className="row">
                   <div className="col-xs-12">
+                      {account ? (
+                        <button
+                          className="btn-wallet"
+                          onClick={modals[network].onPresentAccountModal}
+                        >
+                          {account.substr(0, 4) +
+                            "..." +
+                            account.substr(account.length - 4, 4)}
+                        </button>
+                      ) : (
+                        <button className="btn-wallet" onClick={onNetworkModal}>
+                          Connect Wallet
+                        </button>
+                      )}
                     <div id="toggle" onClick={toggleNavMenu}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -295,22 +309,7 @@ const Header = ({ network, switchNetwork }) => {
                   <div id="cssmenu" className="wd_single_index_menu">
                     {navigation}
                   </div>
-                  <div className="login-btn">
-                    {account ? (
-                      <button
-                        className="btn1"
-                        onClick={modals[network].onPresentAccountModal}
-                      >
-                        {account.substr(0, 4) +
-                          "..." +
-                          account.substr(account.length - 4, 4)}
-                      </button>
-                    ) : (
-                      <button className="btn-wallet" onClick={onNetworkModal}>
-                        Connect Wallet
-                      </button>
-                    )}
-                  </div>
+
                 </div>
               </div>
             </Col>
